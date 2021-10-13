@@ -11,6 +11,12 @@ export default function TextForm(props) {
     let LowerText = text.toLowerCase();
     setText(LowerText);
   };
+  const handleCopy = () => {
+    console.log("Text Copied");
+    let copyText = document.getElementById('myBox');
+    copyText.select()
+    navigator.clipboard.writeText(copyText.value)
+  };
   const clear = () => {
     console.log("Clear has been clicked");
     // let clear = text.toUpperCase();
@@ -45,9 +51,9 @@ export default function TextForm(props) {
       </button>
       </div>
       <div >
-      {/* <button className="btn btn-primary my-1 mx-1" onClick={undefined}>
-        blank
-      </button> */}
+      <button className="btn btn-primary my-1 mx-1" onClick={handleCopy}>
+        Copy Text
+      </button>
       <button className="btn btn-primary my-1 mx-1" onClick={clear}>
         Clear
       </button>
@@ -59,7 +65,7 @@ export default function TextForm(props) {
         <p>{text.split(" ").length} Words, {text.length} Characters</p>
         <p>{0.01 * text.split(" ").length} Minute Read</p>
         <h3 className="my-2">Preview</h3>
-        <p>{text}</p>
+        <p>{text.length>0?text:"You can preview your text here"}</p>
     </div>
     </>
   );
