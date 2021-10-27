@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Navbar from "./components/Navbar.js";
 import TextForm from "./components/TextForm";
 import Alert from "./components/Alert";
-// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   const [mode, setmode] = useState("light"); //Whether dark mode is enabled or not
@@ -33,23 +33,23 @@ function App() {
   };
   return (
     <>
-    {/* <Router> */}
+    <Router>
       <Navbar
         title="Hellow"
-        aboutText="hello about"
+        aboutText="About"
         mode={mode}
         toggleMode={toggleMode}
       />
       <Alert alert={alert} />
-      {/* <Switch>
+      <Switch>
         <Route exact path="/about">
           <About />
-        </Route> */}
-        {/* <Route exact path="/"> */}
+        </Route>
+        <Route exact path="/">
           <TextForm heading="Enter the text for analysis" mode={mode} />
-        {/* </Route>
+        </Route>
       </Switch>
-      </Router> */}
+      </Router>
     </>
   );
 }

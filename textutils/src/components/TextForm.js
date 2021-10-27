@@ -13,9 +13,9 @@ export default function TextForm(props) {
   };
   const handleCopy = () => {
     console.log("Text Copied");
-    let copyText = document.getElementById('myBox');
-    copyText.select()
-    navigator.clipboard.writeText(copyText.value)
+    let copyText = document.getElementById("myBox");
+    copyText.select();
+    navigator.clipboard.writeText(copyText.value);
   };
   const clear = () => {
     console.log("Clear has been clicked");
@@ -30,43 +30,49 @@ export default function TextForm(props) {
   // text = "new text" --> wrong way to change text
   //   setText("new text") // Right way to change text
   return (
-      <>
-    <div className="container my-3">
-      <label htmlFor="myBox" className="form-label">
-        {props.heading}
-      </label>
-      <textarea
-        className="form-control"
-        value={text}
-        onChange={handleOnChange}
-        id="myBox"
-        rows="9"
-      ></textarea>
-      <div>
-      <button className="btn btn-primary my-1 mx-1" onClick={handleUpClick}>
-        Convert to UPPER CASE
-      </button>
-      <button className="btn btn-primary my-1 mx-1" onClick={handleLoClick}>
-        Convert to lower case
-      </button>
+    <>
+      <div className="container my-3">
+        <label htmlFor="myBox" className="form-label">
+          {props.heading}
+        </label>
+        <textarea
+          className="form-control"
+          value={text}
+          onChange={handleOnChange}
+          id="myBox"
+          rows="9"
+        ></textarea>
+        <div>
+          <button className="btn btn-primary my-1 mx-1" onClick={handleUpClick}>
+            Convert to UPPER CASE
+          </button>
+          <button className="btn btn-primary my-1 mx-1" onClick={handleLoClick}>
+            Convert to lower case
+          </button>
+        </div>
+        <div>
+          <button className="btn btn-primary my-1 mx-1" onClick={handleCopy}>
+            Copy Text
+          </button>
+          <button className="btn btn-primary my-1 mx-1" onClick={clear}>
+            Clear
+          </button>
+        </div>
       </div>
-      <div >
-      <button className="btn btn-primary my-1 mx-1" onClick={handleCopy}>
-        Copy Text
-      </button>
-      <button className="btn btn-primary my-1 mx-1" onClick={clear}>
-        Clear
-      </button>
-      </div>
-      
-    </div>
-    <div className="container my-3">
+      <div className="container my-3">
         <h2>Your text summary</h2>
-        <p>{text.split(" ").length} Words, {text.length} Characters</p>
+        <p>
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          Words, {text.length} Characters
+        </p>
         <p>{0.01 * text.split(" ").length} Minute Read</p>
         <h3 className="my-2">Preview</h3>
-        <p>{text.length>0?text:"You can preview your text here"}</p>
-    </div>
+        <p>{text.length > 0 ? text : "You can preview your text here"}</p>
+      </div>
     </>
   );
 }
